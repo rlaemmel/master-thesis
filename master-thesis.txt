@@ -1,0 +1,54 @@
+Working Title
+-------------
+Evolution and Dependencies of Haskell Packages
+
+Research questions
+------------------
+Sometimes you can use a newer version of a dependency even though the update was not backwards compatible. How often? Why? What is dependency management?
+What does backwards compatible mean? Can updating dependencies be automated? Is it possible to do dependency management on a per fragment basis?
+Is there a negative correlation between reverse dependencies and (interface) versions? On a per package, per module, per fragment basis?
+Impact analysis across packages per fragment.
+
+Motivation
+----------
+Dependency Hell is real!
+Cabal Hell, DLL Hell, JAR Hell, ...
+"Download the internet" when using other people's packages.
+Minimize bit rot.
+"The war is over".
+
+Background
+----------
+Related work:
+Static Code Analysis
+Empirical Software Research
+Software Configuration Manangement
+Software Change Impact Analysis
+Apt-pbo: solving the software dependency problem using pseudo-boolean optimization
+A formal model of program dependences and its implications for software testing, debugging, and maintenance
+Fine-Grained Analysis of Change Couplings
+Using Dependency Model to Support Software Architecture Evolution
+
+Related technologies:
+Talking about source package manager.
+Cabal
+Stackage
+Sandboxes
+Standalone Distribution
+Continuous Integration
+Other source package managers: Adept-dm, OPAM, RubyGems / Bundler (Ruby), PIP / PyPI (Python), Packagist / Composer (PHP), NPM (Node.JS), Bower (JS, CSS, HTML), CocoaPods (Objective-C), Maven (Java), Lein (Clojure)
+https://www.versioneye.com/
+http://www.trevorpounds.com/blog/?p=33
+
+Milestones
+----------
+Insert cross package call graph into graph database.
+Accuracy (How many of investigated source files are actually parseable)
+Sample size (How many packages are considered)
+
+Challenges
+----------
+Different Variants exist.
+Circular Dependencies.
+Lookup on index of qualified names is slow.
+
