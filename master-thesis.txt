@@ -5,12 +5,13 @@ Evolution and Dependencies of Haskell Packages
 Research questions
 ------------------
 Sometimes you can use a newer version of a dependency even though the update was not backwards compatible. How often? Why? What is dependency management?
-What does backwards compatible mean? Can updating dependencies be automated? Is it possible to do dependency management on a per fragment basis?
+What does backwards compatible mean? Can updating dependencies be automated? Is it possible to do dependency management on a per fragment basis? Can we automatically compute dependency version bounds?
 Is there a negative correlation between reverse dependencies and (interface) versions? On a per package, per module, per fragment basis?
 Impact analysis across packages per fragment.
 
 Motivation
 ----------
+Software projects use software packages (libraries).
 Dependency Hell is real!
 Cabal Hell, DLL Hell, JAR Hell, ...
 "Download the internet" when using other people's packages.
@@ -24,6 +25,7 @@ Static Code Analysis
 Empirical Software Research
 Software Configuration Manangement
 Software Change Impact Analysis
+Software Slicing
 Apt-pbo: solving the software dependency problem using pseudo-boolean optimization
 A formal model of program dependences and its implications for software testing, debugging, and maintenance
 Fine-Grained Analysis of Change Couplings
@@ -45,10 +47,12 @@ Milestones
 Insert cross package call graph into graph database.
 Accuracy (How many of investigated source files are actually parseable)
 Sample size (How many packages are considered)
+Invent and run and visualize interesting queries.
 
 Challenges
 ----------
 Different Variants exist.
 Circular Dependencies.
 Lookup on index of qualified names is slow.
+Typeclass instances.
 
