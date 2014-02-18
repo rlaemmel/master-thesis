@@ -4,6 +4,7 @@ Evolution and Dependencies of Haskell Packages
 
 Research questions
 ------------------
+Can we automatically detect compatibility between package versions?
 Sometimes you can use a newer version of a dependency even though the update was not backwards compatible. How often? Why? What is dependency management?
 What does backwards compatible mean? Can updating dependencies be automated? Is it possible to do dependency management on a per fragment basis? Can we automatically compute dependency version bounds?
 Is there a negative correlation between reverse dependencies and (interface) versions? On a per package, per module, per fragment basis?
@@ -11,11 +12,15 @@ Impact analysis across packages per fragment.
 
 Motivation
 ----------
-Software projects use software packages (libraries).
-Dependency Hell is real!
+Software projects use third party software libraries. The libraries evolve over time resulting in a progression of versions of libraries. These libraries also use other libraries, they depend on them. Actually they depend on specific versions of libraries since compatibility might be non-trivial.
+These libraries come as packages in different versions with dependency constraints on different versions.
+Installing the set of packages that the user requires such that all dependency constraints are satisfied is the responsibility of a package manager.
+This thesis focusses on application-level package managers targeted at developers who need the latest source code to write their code against.
+There is a tension between cutting-edge and stability.
+Example where very tight version bounds prevent you from installing a package. This is bit rot. It is real. Minimize it.
+But even when there is a set of versions that satisfy the dependencies installing it would require you to reinstall many packages with different versions and sometimes even only with different dependencies. Therefore it is sometimes necessary to have multiple instances of the same version installed. Dependency Hell is real!
 Cabal Hell, DLL Hell, JAR Hell, ...
 "Download the internet" when using other people's packages.
-Minimize bit rot.
 "The war is over".
 
 Background
@@ -36,6 +41,7 @@ Talking about source package manager.
 Cabal
 Stackage
 Sandboxes
+go fix
 Standalone Distribution
 Continuous Integration
 Other source package managers: Adept-dm, OPAM, RubyGems / Bundler (Ruby), PIP / PyPI (Python), Packagist / Composer (PHP), NPM (Node.JS), Bower (JS, CSS, HTML), CocoaPods (Objective-C), Maven (Java), Lein (Clojure)
