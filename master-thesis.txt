@@ -4,24 +4,18 @@ Evolution and Dependencies of Haskell Packages
 
 Research questions
 ------------------
-Can we automatically detect compatibility between package versions?
-Sometimes you can use a newer version of a dependency even though the update was not backwards compatible. How often? Why? What is dependency management?
-What does backwards compatible mean? Can updating dependencies be automated? Is it possible to do dependency management on a per fragment basis? Can we automatically compute dependency version bounds?
-Is there a negative correlation between reverse dependencies and (interface) versions? On a per package, per module, per fragment basis?
-Impact analysis across packages per fragment.
+Can we (semi-)automatically detect compatibility and non-compatibility between package versions?
 
 Motivation
 ----------
-Software projects use third party software libraries. The libraries evolve over time resulting in a progression of versions of libraries. These libraries also use other libraries, they depend on them. Actually they depend on specific versions of libraries since compatibility might be non-trivial.
-These libraries come as packages in different versions with dependency constraints on different versions.
-Installing the set of packages that the user requires such that all dependency constraints are satisfied is the responsibility of a package manager.
-This thesis focusses on application-level package managers targeted at developers who need the latest source code to write their code against.
-There is a tension between cutting-edge and stability.
-Example where very tight version bounds prevent you from installing a package. This is bit rot. It is real. Minimize it.
-But even when there is a set of versions that satisfy the dependencies installing it would require you to reinstall many packages with different versions and sometimes even only with different dependencies. Therefore it is sometimes necessary to have multiple instances of the same version installed. Dependency Hell is real!
-Cabal Hell, DLL Hell, JAR Hell, ...
-"Download the internet" when using other people's packages.
-"The war is over".
+This thesis was inspired by a problem with Haskell package dependency management colloquially referred to as "Cabal Hell". It is related to the "Dependency Hell" that users of *nix package managers (used to) experience "DLL Hell" on Windows and "JAR Hell" on the Java platform.
+Third party software libraries are those that didn't come with an initial installation of a development tool, but are rather installed on demand. These libraries (as all software) [citation needed] evolve over time resulting in a progression of versions. These versions of libraries in turn use other libraries, that is to say they depend on them. But not every version of a library is compatible with every version of its dependencies. For some languages/platforms there are central repositories hosting libraries together with meta information about dependencies and version constraints on the dependencies. Finding a set of packages that a developer would like to use in her program such that all dependency constraints are satisfied is not trivial. [Solving Binary Optimization]
+The goal of this thesis is to show that the compatibility annotations are not always accurate, explain the disadvantages of this inaccuracy and explore how the classification into compatible and incompatible versions could be automated.
+
+The Package Versioning Policy (PVP)
+-----------------------------------
+The Package Versioning Policy [PVP] was introduced to ???? [Eternal compatibility in theory]. It specifies that a new version of a package must have an increased major version if it might cause any package that depended on the previous version to break with the new version. (What does break mean?). The idea being to seperate bugfix versions (that ensure compatibility) from actual interface or functionality changes (that might introduce incompatibility). Other packages could then by specifying their dependency constraints accordingly use new bugfix versions for free but would have to be reviewed and possibly updated to use a newer version with a possibly breaking change.
+As of recently there is opposition to this policy [BOS discussions] since it requires review even if using a newer version that required a major change is just fine. There are examples where an upper version bound unnecessarily prevents you from installing a package both fictional ones as well as encountered in reality.
 
 Background
 ----------
@@ -54,6 +48,12 @@ Insert cross package call graph into graph database.
 Accuracy (How many of investigated source files are actually parseable)
 Sample size (How many packages are considered)
 Invent and run and visualize interesting queries.
+
+It is sometimes necessary to have multiple instances of the same version installed. Or you have to reinstall many packages or even are unable to have two packages installed at the same time. Not very many package managers support this.
+
+There is an inherent tension between using cutting-edge libraries and developing against a stable interface. [citation needed]
+
+Examples of repositories/tools aimed at this use-case include: Adept-dm (Java), OPAM (OCaml), RubyGems / Bundler (Ruby), PIP / PyPI (Python), Packagist / Composer (PHP), NPM (Node.JS), Bower (JS, CSS, HTML), CocoaPods (Objective-C), Maven (Java), Lein (Clojure) [versioneye]. But this thesis focusses on Hackage / Cabal (Haskell). 
 
 Challenges
 ----------
