@@ -40,12 +40,13 @@ Standalone Distribution
 Continuous Integration
 Other source package managers: Adept-dm, OPAM, RubyGems / Bundler (Ruby), PIP / PyPI (Python), Packagist / Composer (PHP), NPM (Node.JS), Bower (JS, CSS, HTML), CocoaPods (Objective-C), Maven (Java), Lein (Clojure)
 https://www.versioneye.com/
+Versioned Symbols
 http://www.trevorpounds.com/blog/?p=33
 
 Milestones
 ----------
 Insert cross package call graph into graph database.
-Accuracy (How many of investigated source files are actually parseable)
+Accuracy (How many of the listed modules actually end up in the database)
 Sample size (How many packages are considered)
 Invent and run and visualize interesting queries.
 
@@ -53,12 +54,10 @@ It is sometimes necessary to have multiple instances of the same version install
 
 There is an inherent tension between using cutting-edge libraries and developing against a stable interface. [citation needed]
 
-Examples of repositories/tools aimed at this use-case include: Adept-dm (Java), OPAM (OCaml), RubyGems / Bundler (Ruby), PIP / PyPI (Python), Packagist / Composer (PHP), NPM (Node.JS), Bower (JS, CSS, HTML), CocoaPods (Objective-C), Maven (Java), Lein (Clojure) [versioneye]. But this thesis focusses on Hackage / Cabal (Haskell). 
-
 Challenges
 ----------
 Different Variants exist.
 Circular Dependencies.
 Lookup on index of qualified names is slow.
-Typeclass instances.
+Typeclass instances are implicitly used.
 
